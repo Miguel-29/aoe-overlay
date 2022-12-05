@@ -1,0 +1,22 @@
+/* You can add global styles to this file, and also import other style files */
+*{
+    font-family: 'NerkoOne';
+    margin: 0;
+}
+
+@font-face {
+    font-family: 'NerkoOne';
+    src: url('/assets/fonts/YanoneKaffeesatz-VariableFont_wght.ttf');
+    font-style: normal;
+    font-weight: normal;
+  }
+
+.text-red{
+    color: red !important;
+}
+.text-blue{
+    color: blue !important;
+}
+.text-green{
+    color: green !important;
+}

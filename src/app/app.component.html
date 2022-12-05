@@ -1,0 +1,83 @@
+<form [formGroup]="profileForm" (ngSubmit)="initQuery()">
+
+  <label for="id_Profile">id: </label>
+  <input id="id_Profile" type="text" formControlName="idProfile">
+
+  <p>Complete the form to enable button.</p>
+  <button type="submit" [disabled]="!profileForm.valid">buscar</button>
+
+</form>
+
+<div *ngIf="match.map_name" class="content-match">
+  <span>{{match.map_name}}</span>
+  <img src="{{match.map_image_url}}" alt="logoMap">
+</div>
+
+<div class="container">
+  <div class="card" *ngFor="let team of teams; index as i;">
+    <h3 class="card-title">Team {{i + 1}}</h3>
+    <div class="card-player" *ngFor="let player of team">
+      <div class="card-player-header">
+        <img src="" alt="logoCountry">
+        <h4 class="card-player-name">{{player.profile.name}}</h4>
+      </div>
+      <div class="card-body">
+        <div class="card-player-1v1">
+          <h5>RM 1v1</h5>
+          <div class="card-player-stats-1v1">
+            <div>
+              <span class="card-player-stats-1v1-title">AVG</span>
+              <span class="card-player-stats-1v1-text">0</span>
+            </div>
+            <div>
+              <span class="card-player-stats-1v1-title">MAX</span>
+              <span class="card-player-stats-1v1-text">{{player.rm1v1.max_rating || '-'}}</span>
+            </div>
+            <div>
+              <span class="card-player-stats-1v1-title ">NOW</span>
+              <span class="card-player-stats-1v1-text text-blue">{{player.rm1v1.rating || '-'}}</span>
+            </div>
+            <div>
+              <span>#{{player.rm1v1.rank}}</span>
+            </div>
+          </div>
+          <div class="card-player-matches">
+            <span class="text-green">W-{{player.rm1v1.wins || '-'}}</span>
+            <span class="text-red">L-{{player.rm1v1.losses || '-'}}</span>
+            <span>{{player.rm1v1.avg || '-'}}%</span>
+            <span [ngClass]="player.rm1v1.streak > 0 ? 'text-green' : 'text-red'">{{player.rm1v1.streak || '-'}}</span>
+          </div>
+        </div>
+        <div class="card-player-tg">
+          <h5>RM tg</h5>
+          <div class="card-player-stats-tg">
+            <div>
+              <span class="card-player-stats-tg-title">AVG</span>
+              <span class="card-player-stats-tg-text">0</span>
+            </div>
+            <div>
+              <span class="card-player-stats-tg-title">MAX</span>
+              <span class="card-player-stats-tg-text">{{player.tg.max_rating || '-'}}</span>
+            </div>
+            <div>
+              <span class="card-player-stats-tg-title ">NOW</span>
+              <span class="card-player-stats-tg-text text-blue">{{player.tg.rating || '-'}}</span>
+            </div>
+            <div>
+              <span>#{{player.tg.rank}}</span>
+            </div>
+          </div>
+          <div class="card-player-matches">
+            <span class="text-green">W-{{player.tg.wins || '-'}}</span>
+            <span class="text-red">L-{{player.tg.losses || '-'}}</span>
+            <span>{{player.tg.avg || '-'}}%</span>
+            <span [ngClass]="player.tg.streak > 0 ? 'text-green' : 'text-red'">{{player.tg.streak || '-'}}</span>
+          </div>
+        </div>
+      </div>
+      <div class="card-footer">
+        <img class="img-civ" src="{{player.profile.civ_image_url}}" alt="logoCivis">
+      </div>
+    </div>
+  </div>
+</div>
